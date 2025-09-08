@@ -1,17 +1,25 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Color Contrast Checker</title>
-  <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Color Contrast Checker</title>
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script type="importmap">
+        {
+            "imports": {
+                "cm-web-modules/": "../node_modules/cm-web-modules/"
+            }
+        }
+    </script>
 </head>
 <body class="bg-light">
-  <div class="container py-5">
-    <contrast-checker bg="#fcffe5" fg="#333333"></contrast-checker>
-  </div>
+<div class="container py-5">
+    <contrast-checker bg="#c6caa5" fg="#333333"></contrast-checker>
+</div>
 
-  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script type="module" src="src/ContrastCheckerElement.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="src/ContrastCheckerElement.js"></script>
 </body>
 </html>

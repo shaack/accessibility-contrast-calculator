@@ -3,12 +3,18 @@
 // Renders Bootstrap-marked markup into the element and wires behavior.
 
 import {ColorUtils} from './ColorUtils.js'
+import {I18n} from "cm-web-modules/src/i18n/I18n.js"
 
 export class ContrastChecker extends HTMLElement {
 
     constructor() {
         super()
         this._initialized = false
+        this.i18n = new I18n({locale: "de"})
+        this.i18n.load({
+            "de": {"name": "Farbkontrast Testtool"},
+            "en": {"name": "Color Contrast Testtool"},
+        })
     }
 
     static get observedAttributes() {
@@ -25,7 +31,7 @@ export class ContrastChecker extends HTMLElement {
         this.innerHTML = `
       <div class="card shadow-sm">
         <div class="card-body p-4">
-          <h2 class="card-title text-center mb-4">Farbkontrast Testtool</h2>
+          <h2 class="card-title text-center mb-4">${this.i18n.t("name")}</h2>
 
           <div class="row align-items-center mb-4">
             <div class="col-md-5">
@@ -39,7 +45,7 @@ export class ContrastChecker extends HTMLElement {
               </div>
             </div>
             <div class="col-md-2 text-center">
-              <button class="btn btn-light btn-swap mt-3 mb-2" title="Swap colors" aria-label="Swap colors">⇄</button>
+              <button class="btn btn-light btn-swap mt-3 mb-2" title="Swap colors" aria-label="Swap colors"><i class="bi bi-arrow-left-right"></i></button>
             </div>
             <div class="col-md-5">
               <div class="text-center">
@@ -66,11 +72,11 @@ export class ContrastChecker extends HTMLElement {
                     <div class="fs-1 fw-bold text-large">Beispiel für großen Text</div>
                     <div class="d-flex gap-3">
                       <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-success rounded-circle badge-large-aa">✓</span>
+                        <span class="bg-success text-light rounded-5 px-1 badge-large-aa"><i class="bi bi-check"></i></span>
                         <span class="fw-bold">AA</span>
                       </div>
                       <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-success rounded-circle badge-large-aaa">✓</span>
+                        <span class="bg-success text-light rounded-5 px-1 badge-large-aaa"><i class="bi bi-check"></i></span>
                         <span class="fw-bold">AAA</span>
                       </div>
                     </div>
@@ -83,11 +89,11 @@ export class ContrastChecker extends HTMLElement {
                     <div class="fs-6 fw-bold text-small">Beispiel für kleinen Text</div>
                     <div class="d-flex gap-3">
                       <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-success rounded-circle badge-small-aa">✓</span>
+                        <span class="bg-success text-light rounded-5 px-1 badge-small-aa"><i class="bi bi-check"></i></span>
                         <span class="fw-bold">AA</span>
                       </div>
                       <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-success rounded-circle badge-small-aaa">✓</span>
+                        <span class="bg-success text-light rounded-5 px-1 badge-small-aaa"><i class="bi bi-check"></i></span>
                         <span class="fw-bold">AAA</span>
                       </div>
                     </div>
@@ -203,7 +209,7 @@ export class ContrastChecker extends HTMLElement {
     }
 
     #setBadge(el, ok) {
-        el.textContent = ok ? '✓' : '✗'
+        el.innerHTML = ok ? '<i class="bi bi-check"></i>' : '<i class="bi bi-x"></i>'
         el.classList.remove('bg-success', 'bg-danger')
         el.classList.add(ok ? 'bg-success' : 'bg-danger', 'rounded-circle', 'badge')
     }
