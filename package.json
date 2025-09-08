@@ -1,0 +1,29 @@
+{
+  "name": "accessibility-contrast-calculator",
+  "version": "1.0.0",
+  "description": "It calculates the contrast ratio between colours to determine WCAG compliance.",
+  "keywords": [
+    "accessibility",
+    "JavaScript",
+    "ES6",
+    "colors"
+  ],
+  "homepage": "https://github.com/shaack/accessibility-contrast-calculator",
+  "bugs": {
+    "url": "https://github.com/shaack/accessibility-contrast-calculator/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shaack/accessibility-contrast-calculator.git"
+  },
+  "license": "MIT",
+  "author": "shaack.com",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "teevi": "^2.2.4"
+  }
+}
