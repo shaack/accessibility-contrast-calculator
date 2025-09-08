@@ -25,5 +25,8 @@
   },
   "devDependencies": {
     "teevi": "^2.2.4"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8"
   }
 }
