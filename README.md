@@ -1,18 +1,18 @@
 # accessibility-contrast-calculator
 
 A JavaScript library for calculating color contrast ratios according to WCAG (Web Content Accessibility Guidelines)
-standards. This tool helps ensure your web content meets accessibility requirements by providing accurate contrast
+standards. This tool helps ensure your web content meets accessibility requirements by providing accurate contrast ratio
 calculations between colors.
 
-## Features
+## Overview
 
-- Calculate contrast ratio between any two colors
-- Support for various color formats (HEX, RGB, HSL)
-- WCAG 2.1 compliance checking
-- Simple and lightweight implementation
-- ES6 module support
+The library provides utilities to:
+
+- Calculate contrast ratios between colors
+- Convert between color formats
+- Evaluate WCAG compliance levels
+- Provide accessibility status feedback
 
 ## Installation
 
 Install using npm:
-
