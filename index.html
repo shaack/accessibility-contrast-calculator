@@ -8,88 +8,93 @@
 </head>
 <body class="bg-light">
 <div class="container-fluid py-5">
-            <div class="card shadow-sm">
-                <div class="card-body p-4">
-                    <h1 class="card-title text-center mb-4">Color Contrast Checker</h1>
+    <div class="card shadow-sm">
+        <div class="card-body p-4">
+            <h1 class="card-title text-center mb-4">Color Contrast Checker</h1>
 
-                    <!-- Color Pickers Section -->
-                    <div class="row align-items-center mb-4">
-                        <div class="col-md-5">
-                            <div class="text-center">
-                                <h6 class="text-muted mb-3">Background color</h6>
-                                <div class="d-flex align-items-center justify-content-center gap-3">
-                                    <div class="border border-3 rounded-3" id="bgPreview" onclick="document.getElementById('bgColor').click()" style="width: 80px; height: 80px; cursor: pointer;"></div>
-                                    <input type="color" id="bgColor" value="#ca8b8a" class="visually-hidden">
-                                    <input type="text" class="form-control font-monospace fw-bold text-center" id="bgValue" value="#ca8b8a" style="width: 100px;">
-                                </div>
-                            </div>
+            <!-- Color Pickers Section -->
+            <div class="row align-items-center mb-4">
+                <div class="col-md-5">
+                    <div class="text-center">
+                        <h6 class="text-muted mb-3">Background color</h6>
+                        <div class="d-flex align-items-center justify-content-center gap-3">
+                            <div class="border border-3 rounded-3" id="bgPreview"
+                                 onclick="document.getElementById('bgColor').click()"
+                                 style="width: 80px; height: 80px; cursor: pointer;"></div>
+                            <input type="color" id="bgColor" value="#ca8b8a" class="visually-hidden">
+                            <input type="text" class="form-control font-monospace fw-bold text-center" id="bgValue"
+                                   value="#ca8b8a" style="width: 100px;">
                         </div>
+                    </div>
+                </div>
 
-                        <div class="col-md-2 text-center">
-                            <button class="btn btn-light rounded-circle p-3" onclick="swapColors()" title="Swap colors">
-                                ⇄
-                            </button>
+                <div class="col-md-2 text-center">
+                    <button class="btn btn-light rounded-circle p-3" onclick="swapColors()" title="Swap colors">
+                        ⇄
+                    </button>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="text-center">
+                        <h6 class="text-muted mb-3">Foreground color</h6>
+                        <div class="d-flex align-items-center justify-content-center gap-3">
+                            <div class="border border-3 rounded-3" id="fgPreview"
+                                 onclick="document.getElementById('fgColor').click()"
+                                 style="width: 80px; height: 80px; cursor: pointer;"></div>
+                            <input type="color" id="fgColor" value="#010000" class="visually-hidden">
+                            <input type="text" class="form-control font-monospace fw-bold text-center" id="fgValue"
+                                   value="#010000" style="width: 100px;">
                         </div>
+                    </div>
+                </div>
+            </div>
 
-                        <div class="col-md-5">
-                            <div class="text-center">
-                                <h6 class="text-muted mb-3">Foreground color</h6>
-                                <div class="d-flex align-items-center justify-content-center gap-3">
-                                    <div class="border border-3 rounded-3" id="fgPreview" onclick="document.getElementById('fgColor').click()" style="width: 80px; height: 80px; cursor: pointer;"></div>
-                                    <input type="color" id="fgColor" value="#010000" class="visually-hidden">
-                                    <input type="text" class="form-control font-monospace fw-bold text-center" id="fgValue" value="#010000" style="width: 100px;">
+            <!-- Results Section -->
+            <div class="alert alert-success rounded-3 mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0">Result:</h5>
+                    <h5 class="mb-0 text-success" id="contrastRatio">7.56:1 - EXCELLENT!</h5>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="p-3 rounded-2" id="largeExample">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="fs-1 fw-bold" id="largeText">Beispiel für großen Text</div>
+                                <div class="d-flex gap-3">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="badge bg-success rounded-circle" id="largeTextAABadge">✓</span>
+                                        <span class="fw-bold">AA</span>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="badge bg-success rounded-circle" id="largeTextAAABadge">✓</span>
+                                        <span class="fw-bold">AAA</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Results Section -->
-                    <div class="alert alert-success rounded-3 mb-4">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h5 class="mb-0">Result:</h5>
-                            <h5 class="mb-0 text-success" id="contrastRatio">7.56:1 - EXCELLENT!</h5>
-                        </div>
-
-                        <div class="row g-3">
-                            <div class="col-12">
-                                <div class="p-3 rounded-2" id="largeExample">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="fs-1 fw-bold" id="largeText">Beispiel für großen Text</div>
-                                        <div class="d-flex gap-3">
-                                            <div class="d-flex align-items-center gap-2">
-                                                <span class="badge bg-success rounded-circle">✓</span>
-                                                <span class="fw-bold">AA</span>
-                                            </div>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <span class="badge bg-success rounded-circle">✓</span>
-                                                <span class="fw-bold">AAA</span>
-                                            </div>
-                                        </div>
+                    <div class="col-12">
+                        <div class="p-3 rounded-2" id="smallExample">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="fs-6 fw-bold" id="smallText">Beispiel für kleinen Text</div>
+                                <div class="d-flex gap-3">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="badge bg-success rounded-circle" id="smallTextAABadge">✓</span>
+                                        <span class="fw-bold">AA</span>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <div class="p-3 rounded-2" id="smallExample">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="fs-6 fw-bold" id="smallText">Beispiel für kleine Schrift</div>
-                                        <div class="d-flex gap-3">
-                                            <div class="d-flex align-items-center gap-2">
-                                                <span class="badge bg-success rounded-circle">✓</span>
-                                                <span class="fw-bold">AA</span>
-                                            </div>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <span class="badge bg-success rounded-circle">✓</span>
-                                                <span class="fw-bold">AAA</span>
-                                            </div>
-                                        </div>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="badge bg-success rounded-circle" id="smallTextAAABadge">✓</span>
+                                        <span class="fw-bold">AAA</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+            </div>
+        </div>
     </div>
 </div>
 
@@ -131,7 +136,36 @@
         const ratioText = ratio.toFixed(2) + ':1'
         const status = ColorUtils.getContrastStatus(ratio)
 
-        ratioElement.textContent = ratioText + status
+        ratioElement.textContent = ratioText + ' - ' + status
+
+        // Update WCAG compliance badges
+        updateWcagBadges(ratio)
+    }
+
+    function updateWcagBadges(ratio) {
+        const largeTextAACompliant = ColorUtils.isWcagCompliant('AA', true, ratio)
+        const largeTextAAACompliant = ColorUtils.isWcagCompliant('AAA', true, ratio)
+        const smallTextAACompliant = ColorUtils.isWcagCompliant('AA', false, ratio)
+        const smallTextAAACompliant = ColorUtils.isWcagCompliant('AAA', false, ratio)
+
+        // Update large text badges
+        updateBadge('largeTextAABadge', largeTextAACompliant)
+        updateBadge('largeTextAAABadge', largeTextAAACompliant)
+
+        // Update small text badges
+        updateBadge('smallTextAABadge', smallTextAACompliant)
+        updateBadge('smallTextAAABadge', smallTextAAACompliant)
+    }
+
+    function updateBadge(badgeId, isCompliant) {
+        const badge = document.getElementById(badgeId)
+        if (isCompliant) {
+            badge.className = 'badge bg-success rounded-circle'
+            badge.textContent = '✓'
+        } else {
+            badge.className = 'badge bg-danger rounded-circle'
+            badge.textContent = '✗'
+        }
     }
 
     function swapColors() {
