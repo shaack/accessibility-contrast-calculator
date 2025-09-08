@@ -5,7 +5,7 @@
 import {ColorUtils} from './ColorUtils.js'
 import {I18n} from "cm-web-modules/src/i18n/I18n.js"
 
-export class ContrastChecker extends HTMLElement {
+export class AccessibilityContrastCalculator extends HTMLElement {
 
     constructor() {
         super()
@@ -279,4 +279,4 @@ export class ContrastChecker extends HTMLElement {
     }
 }
 
-customElements.define('contrast-checker', ContrastChecker)
+customElements.define('accessibility-contrast-calculator', AccessibilityContrastCalculator)
