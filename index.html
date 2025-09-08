@@ -22,7 +22,7 @@
                                 <div class="d-flex align-items-center justify-content-center gap-3">
                                     <div class="border border-3 rounded-3" id="bgPreview" onclick="document.getElementById('bgColor').click()" style="width: 80px; height: 80px; cursor: pointer;"></div>
                                     <input type="color" id="bgColor" value="#ca8b8a" class="visually-hidden">
-                                    <span class="font-monospace fw-bold" id="bgValue">#ca8b8a</span>
+                                    <input type="text" class="form-control font-monospace fw-bold text-center" id="bgValue" value="#ca8b8a" style="width: 100px;">
                                 </div>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                                 <div class="d-flex align-items-center justify-content-center gap-3">
                                     <div class="border border-3 rounded-3" id="fgPreview" onclick="document.getElementById('fgColor').click()" style="width: 80px; height: 80px; cursor: pointer;"></div>
                                     <input type="color" id="fgColor" value="#010000" class="visually-hidden">
-                                    <span class="font-monospace fw-bold" id="fgValue">#010000</span>
+                                    <input type="text" class="form-control font-monospace fw-bold text-center" id="fgValue" value="#010000" style="width: 100px;">
                                 </div>
                             </div>
                         </div>
@@ -110,8 +110,8 @@
         document.getElementById('fgPreview').style.backgroundColor = fgColor
 
         // Update text values
-        document.getElementById('bgValue').textContent = bgColor
-        document.getElementById('fgValue').textContent = fgColor
+        document.getElementById('bgValue').value = bgColor
+        document.getElementById('fgValue').value = fgColor
 
         // Update example backgrounds and text colors
         const largeExample = document.getElementById('largeExample')
@@ -147,12 +147,57 @@
         updateColors()
     }
 
+    function validateAndUpdateFromHex(inputElement, colorPickerElement) {
+        let hexValue = inputElement.value.trim()
+
+        // Add # if missing
+        if (!hexValue.startsWith('#')) {
+            hexValue = '#' + hexValue
+        }
+
+        // Validate hex color format
+        const hexPattern = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
+        if (hexPattern.test(hexValue)) {
+            // Expand 3-digit hex to 6-digit
+            if (hexValue.length === 4) {
+                hexValue = '#' + hexValue[1] + hexValue[1] + hexValue[2] + hexValue[2] + hexValue[3] + hexValue[3]
+            }
+
+            // Update the color picker and normalize the input
+            colorPickerElement.value = hexValue.toLowerCase()
+            inputElement.value = hexValue.toLowerCase()
+
+            // Update the GUI
+            updateColors()
+
+            // Remove error styling
+            inputElement.classList.remove('is-invalid')
+        } else {
+            // Add error styling for invalid hex
+            inputElement.classList.add('is-invalid')
+        }
+    }
+
+    function handleBgHexChange() {
+        const bgValueInput = document.getElementById('bgValue')
+        const bgColorPicker = document.getElementById('bgColor')
+        validateAndUpdateFromHex(bgValueInput, bgColorPicker)
+    }
+
+    function handleFgHexChange() {
+        const fgValueInput = document.getElementById('fgValue')
+        const fgColorPicker = document.getElementById('fgColor')
+        validateAndUpdateFromHex(fgValueInput, fgColorPicker)
+    }
+
     // Make functions globally available for onclick handlers
     window.swapColors = swapColors
 
     // Event listeners
     document.getElementById('bgColor').addEventListener('input', updateColors)
     document.getElementById('fgColor').addEventListener('input', updateColors)
+    document.getElementById('bgValue').addEventListener('blur', handleBgHexChange)
+    document.getElementById('fgValue').addEventListener('blur', handleFgHexChange)
 
     // Initialize
     updateColors()
