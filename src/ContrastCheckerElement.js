@@ -6,13 +6,13 @@ import {ColorUtils} from './ColorUtils.js'
 
 export class ContrastChecker extends HTMLElement {
 
-    static get observedAttributes() {
-        return ['bg', 'fg']
-    }
-
     constructor() {
         super()
         this._initialized = false
+    }
+
+    static get observedAttributes() {
+        return ['bg', 'fg']
     }
 
     connectedCallback() {
@@ -39,7 +39,7 @@ export class ContrastChecker extends HTMLElement {
               </div>
             </div>
             <div class="col-md-2 text-center">
-              <button class="btn btn-light rounded-circle p-3 btn-swap" title="Swap colors" aria-label="Swap colors">⇄</button>
+              <button class="btn btn-light btn-swap mt-3 mb-2" title="Swap colors" aria-label="Swap colors">⇄</button>
             </div>
             <div class="col-md-5">
               <div class="text-center">
@@ -53,9 +53,9 @@ export class ContrastChecker extends HTMLElement {
             </div>
           </div>
 
-          <div class="alert alert-success rounded-3 mb-4" role="status" aria-live="polite">
+          <div class="alert alert-secondary rounded-3 mb-4" role="status" aria-live="polite">
             <div class="d-flex justify-content-between align-items-center mb-3">
-              <h5 class="mb-0">Result:</h5>
+              <h5 class="mb-0">Ergebnis:</h5>
               <h5 class="mb-0 text-success contrast-ratio">–</h5>
             </div>
 

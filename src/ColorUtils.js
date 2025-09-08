@@ -64,7 +64,7 @@ export class ColorUtils {
      * @returns {string} Status description
      */
     static getContrastStatus(ratio) {
-        if (ratio >= 7) return 'EXCELLENT!'
+        if (ratio >= 7) return 'EXCELLENT'
         else if (ratio >= 4.5) return 'GOOD'
         else if (ratio >= 3) return 'POOR'
         else return 'FAIL'

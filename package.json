@@ -27,6 +27,8 @@
     "teevi": "^2.2.4"
   },
   "dependencies": {
-    "bootstrap": "^5.3.8"
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
+    "cm-web-modules": "^2.4.4"
   }
 }
