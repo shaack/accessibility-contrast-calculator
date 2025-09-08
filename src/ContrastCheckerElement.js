@@ -23,9 +23,9 @@ export class ContrastChecker extends HTMLElement {
                 "exampleLargeText": "Beispiel für großen Text",
                 "exampleSmallText": "Beispiel für kleinen Text",
                 "EXCELLENT": "HERVORRAGEND",
-                "GOOD": "GUT",
-                "POOR": "SCHLECHT",
-                "FAIL": "SEHR SCHLECHT"
+                "GOOD": "KÖNNTE BESSER SEIN",
+                "POOR": "SCHLECHTER KONTRAST",
+                "FAIL": "SCHLECHTER KONTRAST"
             },
             "en": {
                 "name": "Color Contrast Testtool",
@@ -38,9 +38,9 @@ export class ContrastChecker extends HTMLElement {
                 "exampleLargeText": "Example for large text",
                 "exampleSmallText": "Example for small text",
                 "EXCELLENT": "EXCELLENT",
-                "GOOD": "GOOD",
-                "POOR": "POOR",
-                "FAIL": "FAIL"
+                "GOOD": "CAN BE BETTER",
+                "POOR": "BAD CONTRAST",
+                "FAIL": "BAD CONTRAST"
             },
         })
     }
@@ -259,6 +259,11 @@ export class ContrastChecker extends HTMLElement {
         const ratio = ColorUtils.calculateContrastRatio(bg, fg)
         const status = ColorUtils.getContrastStatus(ratio)
         this.$ratio.textContent = `${ratio.toFixed(2)}:1 - ${this.i18n.t(status)}`
+
+        this.$ratio.classList.remove('text-success', 'text-danger', 'text-warning')
+        if(status === 'EXCELLENT') this.$ratio.classList.add('text-success')
+            else if(status === 'GOOD') this.$ratio.classList.add('text-secondary')
+        else this.$ratio.classList.add('text-danger')
 
         // WCAG badges
         this.#setBadge(this.$badgeLargeAA, ColorUtils.isWcagCompliant('AA', true, ratio))
