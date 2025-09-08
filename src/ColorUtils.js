@@ -70,4 +70,23 @@ export class ColorUtils {
         else return 'FAIL'
     }
 
+    /**
+     * Check if the contrast ratio meets WCAG compliance standards
+     * @param {string} level - WCAG level ("AA" or "AAA")
+     * @param {boolean} isLargeText - Text size in pixels (24px+ is considered large text)
+     * @param {number} contrastRatio - Contrast ratio value
+     * @returns {boolean} True if compliant, false if not
+     */
+    static isWcagCompliant(level, isLargeText, contrastRatio) {
+        if (level === "AA") {
+            // AA: Large text 3:1, Small text 4.5:1
+            return isLargeText ? contrastRatio >= 3 : contrastRatio >= 4.5
+        } else if (level === "AAA") {
+            // AAA: Large text 4.5:1, Small text 7:1
+            return isLargeText ? contrastRatio >= 4.5 : contrastRatio >= 7
+        }
+        return false
+    }
+
+
 }

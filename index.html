@@ -7,9 +7,7 @@
     <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
+<div class="container-fluid py-5">
             <div class="card shadow-sm">
                 <div class="card-body p-4">
                     <h1 class="card-title text-center mb-4">Color Contrast Checker</h1>
@@ -56,7 +54,7 @@
                             <div class="col-12">
                                 <div class="p-3 rounded-2" id="largeExample">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="fs-1 fw-bold" id="largeText">Large text example</div>
+                                        <div class="fs-1 fw-bold" id="largeText">Beispiel für großen Text</div>
                                         <div class="d-flex gap-3">
                                             <div class="d-flex align-items-center gap-2">
                                                 <span class="badge bg-success rounded-circle">✓</span>
@@ -74,7 +72,7 @@
                             <div class="col-12">
                                 <div class="p-3 rounded-2" id="smallExample">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="fs-6 fw-bold" id="smallText">Small text example here</div>
+                                        <div class="fs-6 fw-bold" id="smallText">Beispiel für kleine Schrift</div>
                                         <div class="d-flex gap-3">
                                             <div class="d-flex align-items-center gap-2">
                                                 <span class="badge bg-success rounded-circle">✓</span>
@@ -91,8 +89,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+
     </div>
 </div>
 
@@ -198,6 +195,16 @@
     document.getElementById('fgColor').addEventListener('input', updateColors)
     document.getElementById('bgValue').addEventListener('blur', handleBgHexChange)
     document.getElementById('fgValue').addEventListener('blur', handleFgHexChange)
+    document.getElementById('bgValue').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.target.blur()
+        }
+    })
+    document.getElementById('fgValue').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.target.blur()
+        }
+    })
 
     // Initialize
     updateColors()
