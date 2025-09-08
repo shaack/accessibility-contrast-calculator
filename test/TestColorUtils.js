@@ -9,6 +9,7 @@ describe("TestColorUtils", function () {
     it("should calculate the correct contrast ratio", function () {
         const fg = "#010000";
         const bg = "#ca8b8a";
-        assert.equal(ColorUtils.contrastRatio(fg, bg), 7.56);
+        const ratio = ColorUtils.calculateContrastRatio(bg, fg).toFixed(2)
+        assert.equal(ratio, "7.56")
     })
 })
