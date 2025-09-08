@@ -87,7 +87,7 @@ export class ContrastChecker extends HTMLElement {
             </div>
           </div>
 
-          <div class="alert alert-secondary rounded-3 mb-4" role="status" aria-live="polite">
+          <div class="alert alert-secondary alert-light border-3 rounded-3 mb-4" role="status" aria-live="polite">
             <div class="d-flex justify-content-between align-items-center mb-3">
               <h5 class="mb-0">${this.i18n.t("resultLabel")}</h5>
               <h5 class="mb-0 text-success contrast-ratio">–</h5>
@@ -95,35 +95,35 @@ export class ContrastChecker extends HTMLElement {
 
             <div class="row g-3">
               <div class="col-12">
-                <div class="p-3 rounded-2 example-large">
-                  <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex rounded-2 border">
+                  <div class="p-3 flex-grow-1 example-large rounded-start">
                     <div class="fs-1 fw-bold text-large">${this.i18n.t("exampleLargeText")}</div>
-                    <div class="d-flex gap-3">
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="bg-success text-light rounded-5 px-1 badge-large-aa"><i class="bi bi-check"></i></span>
-                        <span class="fw-bold">AA</span>
-                      </div>
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="bg-success text-light rounded-5 px-1 badge-large-aaa"><i class="bi bi-check"></i></span>
-                        <span class="fw-bold">AAA</span>
-                      </div>
+                  </div>
+                  <div class="p-3 bg-white d-flex gap-3 align-items-center rounded-end">
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="bg-success text-light rounded-5 px-1 badge-large-aa"><i class="bi bi-check"></i></span>
+                      <span class="fw-bold">AA</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="bg-success text-light rounded-5 px-1 badge-large-aaa"><i class="bi bi-check"></i></span>
+                      <span class="fw-bold">AAA</span>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-12">
-                <div class="p-3 rounded-2 example-small">
-                  <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex rounded-2 border">
+                  <div class="p-3 flex-grow-1 example-small rounded-start">
                     <div class="fs-6 fw-bold text-small">${this.i18n.t("exampleSmallText")}</div>
-                    <div class="d-flex gap-3">
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="bg-success text-light rounded-5 px-1 badge-small-aa"><i class="bi bi-check"></i></span>
-                        <span class="fw-bold">AA</span>
-                      </div>
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="bg-success text-light rounded-5 px-1 badge-small-aaa"><i class="bi bi-check"></i></span>
-                        <span class="fw-bold">AAA</span>
-                      </div>
+                  </div>
+                  <div class="p-3 bg-white d-flex gap-3 align-items-center rounded-end">
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="bg-success text-light rounded-5 px-1 badge-small-aa"><i class="bi bi-check"></i></span>
+                      <span class="fw-bold">AA</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="bg-success text-light rounded-5 px-1 badge-small-aaa"><i class="bi bi-check"></i></span>
+                      <span class="fw-bold">AAA</span>
                     </div>
                   </div>
                 </div>
