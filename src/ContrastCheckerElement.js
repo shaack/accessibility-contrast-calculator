@@ -12,8 +12,36 @@ export class ContrastChecker extends HTMLElement {
         this._initialized = false
         this.i18n = new I18n({locale: "de"})
         this.i18n.load({
-            "de": {"name": "Farbkontrast Testtool"},
-            "en": {"name": "Color Contrast Testtool"},
+            "de": {
+                "name": "Farbkontrast Testtool",
+                "backgroundLabel": "Hintergrund",
+                "pickBgColor": "Hintergrundfarbe wählen",
+                "swapColors": "Farben tauschen",
+                "foregroundLabel": "Textfarbe",
+                "pickFgColor": "Textfarbe wählen",
+                "resultLabel": "Ergebnis:",
+                "exampleLargeText": "Beispiel für großen Text",
+                "exampleSmallText": "Beispiel für kleinen Text",
+                "EXCELLENT": "HERVORRAGEND",
+                "GOOD": "GUT",
+                "POOR": "SCHLECHT",
+                "FAIL": "SEHR SCHLECHT"
+            },
+            "en": {
+                "name": "Color Contrast Testtool",
+                "backgroundLabel": "Background",
+                "pickBgColor": "Pick background color",
+                "swapColors": "Swap colors",
+                "foregroundLabel": "Text color",
+                "pickFgColor": "Pick foreground color",
+                "resultLabel": "Result:",
+                "exampleLargeText": "Example for large text",
+                "exampleSmallText": "Example for small text",
+                "EXCELLENT": "EXCELLENT",
+                "GOOD": "GOOD",
+                "POOR": "POOR",
+                "FAIL": "FAIL"
+            },
         })
     }
 
@@ -36,22 +64,22 @@ export class ContrastChecker extends HTMLElement {
           <div class="row align-items-center mb-4">
             <div class="col-md-5">
               <div class="text-center">
-                <h6 class="text-muted mb-3">Hintergrund</h6>
+                <h6 class="text-muted mb-3">${this.i18n.t("backgroundLabel")}</h6>
                 <div class="d-flex align-items-center justify-content-center gap-3">
-                  <div class="border border-3 rounded-3 preview-bg" title="Pick background color" style="width:80px; height:80px; cursor:pointer;"></div>
+                  <div class="border border-3 rounded-3 preview-bg" title="${this.i18n.t('pickBgColor')}" style="width:80px; height:80px; cursor:pointer;"></div>
                   <input type="color" class="visually-hidden input-bg" value="${initBg}">
                   <input type="text" class="form-control font-monospace fw-bold text-center input-bg-hex" value="${initBg}" style="width: 100px;">
                 </div>
               </div>
             </div>
             <div class="col-md-2 text-center">
-              <button class="btn btn-light btn-swap mt-3 mb-2" title="Swap colors" aria-label="Swap colors"><i class="bi bi-arrow-left-right"></i></button>
+              <button class="btn btn-light btn-swap mt-3 mb-2" title="${this.i18n.t('swapColors')}" aria-label="${this.i18n.t('swapColors')}"><i class="bi bi-arrow-left-right"></i></button>
             </div>
             <div class="col-md-5">
               <div class="text-center">
-                <h6 class="text-muted mb-3">Textfarbe</h6>
+                <h6 class="text-muted mb-3">${this.i18n.t("foregroundLabel")}</h6>
                 <div class="d-flex align-items-center justify-content-center gap-3">
-                  <div class="border border-3 rounded-3 preview-fg" title="Pick foreground color" style="width:80px; height:80px; cursor:pointer;"></div>
+                  <div class="border border-3 rounded-3 preview-fg" title="${this.i18n.t('pickFgColor')}" style="width:80px; height:80px; cursor:pointer;"></div>
                   <input type="color" class="visually-hidden input-fg" value="${initFg}">
                   <input type="text" class="form-control font-monospace fw-bold text-center input-fg-hex" value="${initFg}" style="width: 100px;">
                 </div>
@@ -61,7 +89,7 @@ export class ContrastChecker extends HTMLElement {
 
           <div class="alert alert-secondary rounded-3 mb-4" role="status" aria-live="polite">
             <div class="d-flex justify-content-between align-items-center mb-3">
-              <h5 class="mb-0">Ergebnis:</h5>
+              <h5 class="mb-0">${this.i18n.t("resultLabel")}</h5>
               <h5 class="mb-0 text-success contrast-ratio">–</h5>
             </div>
 
@@ -69,7 +97,7 @@ export class ContrastChecker extends HTMLElement {
               <div class="col-12">
                 <div class="p-3 rounded-2 example-large">
                   <div class="d-flex justify-content-between align-items-center">
-                    <div class="fs-1 fw-bold text-large">Beispiel für großen Text</div>
+                    <div class="fs-1 fw-bold text-large">${this.i18n.t("exampleLargeText")}</div>
                     <div class="d-flex gap-3">
                       <div class="d-flex align-items-center gap-2">
                         <span class="bg-success text-light rounded-5 px-1 badge-large-aa"><i class="bi bi-check"></i></span>
@@ -86,7 +114,7 @@ export class ContrastChecker extends HTMLElement {
               <div class="col-12">
                 <div class="p-3 rounded-2 example-small">
                   <div class="d-flex justify-content-between align-items-center">
-                    <div class="fs-6 fw-bold text-small">Beispiel für kleinen Text</div>
+                    <div class="fs-6 fw-bold text-small">${this.i18n.t("exampleSmallText")}</div>
                     <div class="d-flex gap-3">
                       <div class="d-flex align-items-center gap-2">
                         <span class="bg-success text-light rounded-5 px-1 badge-small-aa"><i class="bi bi-check"></i></span>
@@ -230,7 +258,7 @@ export class ContrastChecker extends HTMLElement {
         // Calculate contrast
         const ratio = ColorUtils.calculateContrastRatio(bg, fg)
         const status = ColorUtils.getContrastStatus(ratio)
-        this.$ratio.textContent = `${ratio.toFixed(2)}:1 - ${status}`
+        this.$ratio.textContent = `${ratio.toFixed(2)}:1 - ${this.i18n.t(status)}`
 
         // WCAG badges
         this.#setBadge(this.$badgeLargeAA, ColorUtils.isWcagCompliant('AA', true, ratio))
