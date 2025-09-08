@@ -258,11 +258,14 @@ export class AccessibilityContrastCalculator extends HTMLElement {
         // Calculate contrast
         const ratio = ColorUtils.calculateContrastRatio(bg, fg)
         const status = ColorUtils.getContrastStatus(ratio)
-        this.$ratio.textContent = `${ratio.toFixed(2)}:1 - ${this.i18n.t(status)}`
+        this.$ratio.textContent = `${ratio.toLocaleString(this.i18n.props.locale, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}:1 - ${this.i18n.t(status)}`
 
         this.$ratio.classList.remove('text-success', 'text-danger', 'text-warning')
-        if(status === 'EXCELLENT') this.$ratio.classList.add('text-success')
-            else if(status === 'GOOD') this.$ratio.classList.add('text-secondary')
+        if (status === 'EXCELLENT') this.$ratio.classList.add('text-success')
+        else if (status === 'GOOD') this.$ratio.classList.add('text-secondary')
         else this.$ratio.classList.add('text-danger')
 
         // WCAG badges
