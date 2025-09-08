@@ -4,29 +4,70 @@
  */
 export class ColorUtils {
     /**
-     * Calculate relative luminance of a color
-     * @param {string} hex - Hex color string e.g. "#ffffff"
-     * @returns {number} - Luminance value (0-1)
+     * Color utility functions for contrast ratio calculations
      */
-    static luminance(hex) {
-        let rgb = hex.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16) / 255);
-        rgb = rgb.map(v =>
-            v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)
-        );
-        return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
+
+    /**
+     * Convert hex color to RGB object
+     * @param {string} hex - Hex color string (e.g., "#ff0000")
+     * @returns {object} RGB object with r, g, b properties
+     */
+    static hexToRgb(hex) {
+        const r = parseInt(hex.slice(1, 3), 16)
+        const g = parseInt(hex.slice(3, 5), 16)
+        const b = parseInt(hex.slice(5, 7), 16)
+        return {r, g, b}
     }
 
     /**
-     * Calculate contrast ratio between two hex colors
-     * @param {string} hex1 - First color
-     * @param {string} hex2 - Second color
-     * @returns {number} - Contrast ratio (1-21)
+     * Calculate relative luminance of an RGB color
+     * @param {object} rgb - RGB object with r, g, b properties
+     * @returns {number} Relative luminance value
      */
-    static contrastRatio(hex1, hex2) {
-        const lum1 = this.luminance(hex1);
-        const lum2 = this.luminance(hex2);
-        const lighter = Math.max(lum1, lum2);
-        const darker = Math.min(lum1, lum2);
-        return Number(((lighter + 0.05) / (darker + 0.05)).toFixed(2));
+    static relativeLuminance(rgb) {
+        const rsRGB = rgb.r / 255
+        const gsRGB = rgb.g / 255
+        const bsRGB = rgb.b / 255
+
+        const r = rsRGB <= 0.03928 ? rsRGB / 12.92 : Math.pow((rsRGB + 0.055) / 1.055, 2.4)
+        const g = gsRGB <= 0.03928 ? gsRGB / 12.92 : Math.pow((gsRGB + 0.055) / 1.055, 2.4)
+        const b = bsRGB <= 0.03928 ? bsRGB / 12.92 : Math.pow((bsRGB + 0.055) / 1.055, 2.4)
+
+        return 0.2126 * r + 0.7152 * g + 0.0722 * b
     }
+
+    /**
+     * Calculate contrast ratio between two colors
+     * @param {string} bgColor - Background color in hex format
+     * @param {string} fgColor - Foreground color in hex format
+     * @returns {number} Contrast ratio
+     */
+    static calculateContrastRatio(bgColor, fgColor) {
+        // Convert hex to RGB
+        const bgRgb = this.hexToRgb(bgColor)
+        const fgRgb = this.hexToRgb(fgColor)
+
+        // Calculate relative luminance
+        const bgLum = this.relativeLuminance(bgRgb)
+        const fgLum = this.relativeLuminance(fgRgb)
+
+        // Calculate contrast ratio
+        const lighter = Math.max(bgLum, fgLum)
+        const darker = Math.min(bgLum, fgLum)
+
+        return (lighter + 0.05) / (darker + 0.05)
+    }
+
+    /**
+     * Get accessibility status based on contrast ratio
+     * @param {number} ratio - Contrast ratio
+     * @returns {string} Status description
+     */
+    static getContrastStatus(ratio) {
+        if (ratio >= 7) return 'EXCELLENT!'
+        else if (ratio >= 4.5) return 'GOOD'
+        else if (ratio >= 3) return 'POOR'
+        else return 'FAIL'
+    }
+
 }
