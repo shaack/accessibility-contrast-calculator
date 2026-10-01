@@ -21,10 +21,10 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "teevi"
   },
   "devDependencies": {
-    "teevi": "^2.2.4"
+    "teevi": "^2.7.0"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
