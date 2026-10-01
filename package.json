@@ -1,6 +1,6 @@
 {
   "name": "accessibility-contrast-calculator",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "It calculates the contrast ratio between colours to determine WCAG compliance.",
   "keywords": [
     "accessibility",
